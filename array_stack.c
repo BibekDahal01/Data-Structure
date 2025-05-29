@@ -73,6 +73,7 @@ int main() {
                 display();
                 break;
             case 5:
+                printf("Exit...");
                 return 0;
             default:
                 printf("Invalid choice! Try again.\n");

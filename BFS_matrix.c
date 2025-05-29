@@ -11,7 +11,7 @@ void bfs(int graph[MAX][MAX], int visited[MAX], int N, int start) {
 
     while (front < rear) {
         int node = queue[front++];
-        printf("%d ", node + 1); // Print 1-based index
+        printf("%d ", node + 1); 
 
         for (int i = 0; i < N; i++) {
             if (graph[node][i] == 1 && visited[i] == 0) {

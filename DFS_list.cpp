@@ -2,13 +2,13 @@
 #include <vector>
 using namespace std;
 
-void dfsUtil(int node, vector<bool>& visited, const vector<vector<int>>& adj) {
+void dfsUtil(vector<bool>& visited, const vector<vector<int>>& adj, int node) {
     visited[node] = true;
     cout << node << " ";
 
     for (int neighbor : adj[node]) {
         if (!visited[neighbor])
-            dfsUtil(neighbor, visited, adj);
+            dfsUtil(visited, adj, neighbor);
     }
 }
 
@@ -32,7 +32,7 @@ int main() {
 
     vector<bool> visited(V, false);
     cout << "DFS Traversal: ";
-    dfsUtil(start, visited, adj);
+    dfsUtil(visited, adj, start);
     cout << endl;
 
     return 0;

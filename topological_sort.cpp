@@ -3,34 +3,13 @@
 #include <stack>
 using namespace std;
 
-void dfs(int node, vector<vector<int>>& adj, vector<bool>& visited, stack<int>& st) {
+void dfs(vector<bool>& visited, stack<int>& stk, const vector<vector<int>>& adj, int node) {
     visited[node] = true;
-
     for (int neighbor : adj[node]) {
-        if (!visited[neighbor]) {
-            dfs(neighbor, adj, visited, st);
-        }
+        if (!visited[neighbor])
+            dfs(visited, stk, adj, neighbor);
     }
-
-    st.push(node);
-}
-
-void topologicalSort(int V, vector<vector<int>>& adj) {
-    vector<bool> visited(V, false);
-    stack<int> st;
-
-    for (int i = 0; i < V; i++) {
-        if (!visited[i]) {
-            dfs(i, adj, visited, st);
-        }
-    }
-
-    cout << "Topological Sort Order: ";
-    while (!st.empty()) {
-        cout << st.top() << " ";
-        st.pop();
-    }
-    cout << endl;
+    stk.push(node);  
 }
 
 int main() {
@@ -39,15 +18,27 @@ int main() {
     cin >> V >> E;
 
     vector<vector<int>> adj(V);
-
-    cout << "Enter " << E << " directed edges (u v means u -> v):\n";
+    cout << "Enter edges (u v) - directed edge u->v:\n";
     for (int i = 0; i < E; i++) {
         int u, v;
         cin >> u >> v;
         adj[u].push_back(v);
     }
 
-    topologicalSort(V, adj);
+    vector<bool> visited(V, false);
+    stack<int> stk;
+
+    for (int i = 0; i < V; i++) {
+        if (!visited[i])
+            dfs(visited, stk, adj, i);
+    }
+
+    cout << "Topological Sort: ";
+    while (!stk.empty()) {
+        cout << stk.top() << " ";
+        stk.pop();
+    }
+    cout << endl;
 
     return 0;
 }

@@ -91,9 +91,9 @@ Node * deleteNode(Node * root,int data){
         } else if(root->right == NULL){
             return root->left;
         } else {
-            int temp = getMax(root->left);
+            int temp = getMin(root->right);
             root->data = temp;
-            root->left = deleteNode(root->left,temp);
+            root->right = deleteNode(root->right,temp);
             return root;
         }
     }

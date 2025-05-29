@@ -2,7 +2,7 @@
 
 void dfs(int graph[100][100], int visited[100], int N, int node) {
     visited[node] = 1;
-    printf("%d ", node + 1); // Convert to 1-based index for output
+    printf("%d ", node + 1); 
 
     for (int i = 0; i < N; i++) {
         if (graph[node][i] == 1 && visited[i] == 0) {
@@ -18,13 +18,12 @@ int main() {
     int graph[100][100];
     int visited[100] = {0};
 
-    // Input the adjacency matrix
     for (int i = 0; i < N; i++) {
         for (int j = 0; j < N; j++) {
             scanf("%d", &graph[i][j]);
         }
     }
 
-    dfs(graph, visited, N, source - 1); // Convert source to 0-based index
+    dfs(graph, visited, N, source - 1); 
     return 0;
 }
